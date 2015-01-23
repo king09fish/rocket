@@ -4,9 +4,9 @@
 
 extern "C"
 {
-#include <lualib/lua.h>
-#include <lualib/lualib.h>
-#include <lualib/lauxlib.h>
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
 }
 
 #endif
