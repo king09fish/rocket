@@ -1,12 +1,12 @@
 
 #ifndef _ROCKET_LUA
 #define _ROCKET_LUA
-
+/*
 extern "C"
 {
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
-}
+#include <lualib/lua.h>
+#include <lualib/lualib.h>
+#include <lualib/lauxlib.h>
+}*/
 
 #endif
