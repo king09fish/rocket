@@ -12,11 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\common.h" />
+    <ClInclude Include="..\include\paltform.h" />
     <ClInclude Include="..\include\iocp\acceptor.h" />
+    <ClInclude Include="..\include\iocp\iocp.h" />
     <ClInclude Include="..\include\server\server.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\iocp\acceptor.cpp" />
+    <ClCompile Include="..\src\iocp\iocp.cpp" />
     <ClCompile Include="..\src\server\server.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -53,7 +56,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>../lib/</OutDir>
+    <OutDir>..\lib\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

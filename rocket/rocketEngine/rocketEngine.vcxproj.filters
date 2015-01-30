@@ -19,23 +19,38 @@
     <Filter Include="源文件\src">
       <UniqueIdentifier>{0d77f9da-8e96-4f7c-bacf-ef35e324c50a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\server">
+      <UniqueIdentifier>{0b96bed7-09ef-4e49-84fe-a22edb52682a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\server">
+      <UniqueIdentifier>{7a619548-159a-4991-8f78-0515ac53292d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\server\server.h">
-      <Filter>头文件\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\common.h">
-      <Filter>头文件\include</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\iocp\acceptor.h">
       <Filter>头文件\include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\common.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\server\server.h">
+      <Filter>头文件\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\iocp\iocp.h">
+      <Filter>头文件\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\paltform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\server\server.cpp">
+    <ClCompile Include="..\src\iocp\acceptor.cpp">
       <Filter>源文件\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\iocp\acceptor.cpp">
+    <ClCompile Include="..\src\server\server.cpp">
+      <Filter>源文件\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iocp\iocp.cpp">
       <Filter>源文件\src</Filter>
     </ClCompile>
   </ItemGroup>
