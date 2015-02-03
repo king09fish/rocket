@@ -9,15 +9,17 @@ namespace rocket
 	{
 		class Acceptor
 		{
-		public:
-			Acceptor(IO_SERVER *io);
+			public:
+				Acceptor(IO_SERVER *io);
 
-			~Acceptor();
+				~Acceptor();
 
-			void Listen(const char *ip_addr, unsigned short port);
+				void Listen(const char *ip_addr, unsigned short port);
 
-		public:
-		IO_SERVER *p_io_server;
+			public:
+			IO_SERVER *p_io_server;
+
+			SOCKET m_server = INVALID_SOCKET;
 
 
 		};

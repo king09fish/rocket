@@ -11,13 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\common.h" />
-    <ClInclude Include="..\include\paltform.h" />
+    <ClInclude Include="..\include\common\common.h" />
+    <ClInclude Include="..\include\common\paltform.h" />
     <ClInclude Include="..\include\iocp\acceptor.h" />
     <ClInclude Include="..\include\iocp\iocp.h" />
     <ClInclude Include="..\include\server\server.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\common\common.cpp" />
     <ClCompile Include="..\src\iocp\acceptor.cpp" />
     <ClCompile Include="..\src\iocp\iocp.cpp" />
     <ClCompile Include="..\src\server\server.cpp" />

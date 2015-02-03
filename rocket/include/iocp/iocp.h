@@ -1,10 +1,9 @@
 
 
-#ifndef _ROCKET_IOCP_H
-#define _ROCKET_IOCP_H
-#include "common.h"
+#ifndef _ROCKET_IOCP_SERVER_H
+#define _ROCKET_IOCP_SERVER_H
 
-
+#include "common/common.h"
 namespace rocket
 {
 	namespace network
@@ -20,15 +19,16 @@ namespace rocket
 					printf("the io is not null!");
 				}
 				m_io = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, 0);
+				
+
 			}
 
 			~IO_SERVER(){}
 
-			void test();
+			int test();
 
 		public:
 			HANDLE m_io = nullptr;
-
 
 
 		};

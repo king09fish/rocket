@@ -25,13 +25,16 @@
     <Filter Include="源文件\server">
       <UniqueIdentifier>{7a619548-159a-4991-8f78-0515ac53292d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\common">
+      <UniqueIdentifier>{efd2d375-deaf-4cf7-b8e1-9020d081d164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\common">
+      <UniqueIdentifier>{d18c0036-914b-4244-83d2-c0158793586a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\iocp\acceptor.h">
       <Filter>头文件\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\common.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\include\server\server.h">
       <Filter>头文件\server</Filter>
@@ -39,8 +42,11 @@
     <ClInclude Include="..\include\iocp\iocp.h">
       <Filter>头文件\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\paltform.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="..\include\common\common.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\common\paltform.h">
+      <Filter>头文件\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="..\src\iocp\iocp.cpp">
       <Filter>源文件\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\common.cpp">
+      <Filter>源文件\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
