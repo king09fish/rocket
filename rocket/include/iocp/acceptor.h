@@ -14,12 +14,15 @@ namespace rocket
 
 				~Acceptor();
 
-				void Listen(const char *ip_addr, unsigned short port);
+				bool Listen(const char *ip_addr, unsigned short port);
 
 			public:
-			IO_SERVER *p_io_server;
+			IO_SERVER *io_server;
 
-			SOCKET m_server = INVALID_SOCKET;
+			SOCKET m_server_socket = INVALID_SOCKET;
+
+			SOCKADDR_IN		socket_addr;
+
 
 
 		};

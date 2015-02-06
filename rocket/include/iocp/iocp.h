@@ -19,6 +19,11 @@ namespace rocket
 					printf("the io is not null!");
 				}
 				m_io = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, 0);
+
+				if (m_io == NULL)
+				{
+					printf("init io is error");
+				}
 				
 
 			}

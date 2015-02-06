@@ -15,6 +15,13 @@ bool Server::StartAccept()
 		printf("acceptor_ptr io_servi init fail");
 		return false;
 	}
+	if (!m_acceptor->Listen(m_local_ip.c_str(), m_listen_port))
+	{
+		printf("appeptor listen Error");
+		return false;
+	}
+
+
 	return true;
 }
 
