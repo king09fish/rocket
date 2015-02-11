@@ -48,6 +48,9 @@
     <ClInclude Include="..\include\common\paltform.h">
       <Filter>头文件\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\iocp\connection.h">
+      <Filter>头文件\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\iocp\acceptor.cpp">
@@ -61,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="..\src\common\common.cpp">
       <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iocp\connection.cpp">
+      <Filter>源文件\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

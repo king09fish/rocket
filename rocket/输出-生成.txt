@@ -1,0 +1,4 @@
+﻿1>------ 已启动生成:  项目: test, 配置: Debug Win32 ------
+1>  test.cpp
+1>LINK : fatal error LNK1168: 无法打开 E:\local_nest\local_nest\rocket\Debug\test.exe 进行写入
+========== 生成:  成功 0 个，失败 1 个，最新 0 个，跳过 0 个 ==========

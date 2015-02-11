@@ -1,5 +1,5 @@
 #include "server/server.h"
-
+using namespace rocket::network;
 
 Server::Server(std::string ip, unsigned short port):m_local_ip(ip), m_listen_port(port)
 {
@@ -21,6 +21,8 @@ bool Server::StartAccept()
 		return false;
 	}
 
+	ConnectioinPtr newConnection(new Connection());
+	m_acceptor->Accept(newConnection, std::bind(&TcpSessionManager::AcceptNewClient, this, std::placeholders::_1, std::placeholders::_2, ));
 
 	return true;
 }

@@ -59,6 +59,47 @@ bool Acceptor::Listen(const char* ip_addr, unsigned short port)
 	return true;
 }
 
+bool Acceptor::Accept(const ConnectioinPtr &con, _AcceptHandler&& handler)
+{
+	if (m_Accept_Handler)
+	{	
+		printf("AcceptHandler Error");
+		//LCF("doAccept err, aready doAccept  ip=" << _ip << ", port=" << _port);
+		return false;
+	}
+	/*
+	if (_nLinkStatus != LS_ESTABLISHED)
+	{
+		LCF("doAccept err, link is unestablished.  ip=" << _ip << ", port=" << _port);
+		return false;
+	}*/
+
+	m_connection = con;
+	m_client_socket = INVALID_SOCKET;
+	memset(m_recv_Buf, 0, sizeof(m_recv_Buf));
+	m_recv_Len = 0;
+	m_client_socket = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
+	if (m_client_socket == INVALID_SOCKET)
+	{
+		//LCF("create client socket err! ERRCODE=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
+		return false;
+	}
+
+	if (!AcceptEx(m_server_socket, m_client_socket, m_recv_Buf, 0, sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, &m_recv_Len, &_handle._overlapped))
+	{
+		if (WSAGetLastError() != ERROR_IO_PENDING)
+		{
+			//LCE("do AcceptEx err, ERRCODE=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
+			closesocket(m_client_socket);
+			m_client_socket = INVALID_SOCKET;
+			return false;
+		}
+	}
+	m_Accept_Handler = std::move(handler);
+	_handle._tcpAccept = shared_from_this();
+	return true;
+}
+
 Acceptor::~Acceptor()
 {
 
