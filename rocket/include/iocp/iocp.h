@@ -13,7 +13,6 @@ namespace rocket
 		public:
 			IO_SERVER()
 			{
-				
 				if (m_io != nullptr)
 				{
 					printf("the io is not null!");
@@ -24,7 +23,6 @@ namespace rocket
 				{
 					printf("init io is error");
 				}
-				
 
 			}
 
@@ -37,7 +35,7 @@ namespace rocket
 
 
 		};
-
+		typedef std::shared_ptr<IO_SERVER> Server_Ptr;
 	}
 
 }

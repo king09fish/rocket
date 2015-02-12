@@ -7,7 +7,7 @@ namespace rocket
 {
 	namespace network
 	{
-		class Acceptor
+		class Acceptor:public std::enable_shared_from_this<Acceptor>
 		{
 			public:
 				Acceptor(IO_SERVER *io);
@@ -16,27 +16,31 @@ namespace rocket
 
 				bool Listen(const char *ip_addr, unsigned short port);
 
-				bool Accept(const ConnectioinPtr &ptr);
+				bool Accept(const ConnectioinPtr &ptr, Accept_Handler&& handler);
 
 			public:
-			IO_SERVER *io_server;
+				Server_Ptr server;
 
-			SOCKET m_server_socket = INVALID_SOCKET;
+				SOCKET m_server_socket = INVALID_SOCKET;
 
-			SOCKET m_client_socket = INVALID_SOCKET;
+				SOCKET m_client_socket = INVALID_SOCKET;
 
-			SOCKADDR_IN	socket_addr;
+				SOCKADDR_IN	socket_addr;
 
-			_AcceptHandler m_Accept_Handler;
+				Accept_Handler m_Accept_Handler;
 
-			ConnectioinPtr m_connection;
+				ConnectioinPtr m_connection;
 
-			char m_recv_Buf[200];
-			DWORD m_recv_Len = 0;
+				RequestHandle m_request_handle;
+
+
+				char m_recv_Buf[200];
+				DWORD m_recv_Len = 0;
 
 		};
 
-		
+		typedef std::shared_ptr<Acceptor> Acceptor_ptr;
+
 
 	}
 

@@ -41,9 +41,34 @@ namespace rocket
 			EC_REMOTE_HANGUP,
 		};
 
+		enum ServerStatus
+		{
+			Init_Suc = 0,
+			Start_Suc,
+			Start_Fail,
+		};
 
-	
-		typedef std::function<void(ErrorCode, std::shared_ptr<Connection>)> _AcceptHandler;
+		class Acceptor;
+
+#ifdef WIN32
+		struct RequestHandle
+		{
+			OVERLAPPED	 _overlapped;
+			unsigned char _type;
+			std::shared_ptr<Acceptor> _tcpAccept;
+			enum HANDLE_TYPE
+			{
+				HANDLE_ACCEPT,
+				HANDLE_RECV,
+				HANDLE_SEND,
+				HANDLE_CONNECT,
+				HANDLE_RECVFROM,
+				HANDLE_SENDTO,
+			};
+		};
+#endif
+		class Connection;
+		typedef std::function<void(ErrorCode, std::shared_ptr<Connection>)> Accept_Handler;
 		
 	}
 }

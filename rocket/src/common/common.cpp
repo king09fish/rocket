@@ -14,7 +14,7 @@
 
 rocket::network::Env::Env()
 {
-	std::cout << "qqaqq" << std::endl;
+	std::cout << "Env Construct" << std::endl;
 }
 
 rocket::network::Env::~Env()
