@@ -30,6 +30,8 @@ namespace rocket
 
 			int test();
 
+			void ThreaLoop(bool is_immediately);
+
 		public:
 			HANDLE m_io = nullptr;
 

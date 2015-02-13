@@ -2,9 +2,13 @@
 #include"iocp/acceptor.h"
 using namespace rocket::network;
 
-Acceptor::Acceptor(IO_SERVER *io):server(io)
+Acceptor::Acceptor(Server_Ptr io) :server(io)
 {
 	memset(&m_request_handle._overlapped, 0, sizeof(m_request_handle._overlapped));
+	memset(&socket_addr, 0, sizeof(socket_addr));
+	m_request_handle._type = RequestHandle::HANDLE_ACCEPT;
+	m_server_socket = INVALID_SOCKET;
+	m_client_socket = INVALID_SOCKET;
 }
 
 bool Acceptor::Listen(const char* ip_addr, unsigned short port)
@@ -101,6 +105,40 @@ bool Acceptor::Accept(const ConnectioinPtr &con, Accept_Handler&& handler)
 	return true;
 }
 
+bool Acceptor::dd(BOOL bSuccess)
+{
+	/*
+	std::shared_ptr<TcpAccept> guad(std::move(_handle._tcpAccept));
+	_OnAcceptHandler onAccept(std::move(m_Accept_Handler));
+	if (bSuccess)
+	{
+		{
+			if (setsockopt(_socket, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, (char*)&_server, sizeof(_server)) != 0)
+			{
+				LCW("SO_UPDATE_ACCEPT_CONTEXT fail!  last err=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
+			}
+			BOOL bTrue = TRUE;
+			if (setsockopt(_socket, IPPROTO_TCP, TCP_NODELAY, (char*)&bTrue, sizeof(bTrue)) != 0)
+			{
+				LCW("setsockopt TCP_NODELAY fail!  last err=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
+			}
+		}
+
+		sockaddr * paddr1 = NULL;
+		sockaddr * paddr2 = NULL;
+		int tmp1 = 0;
+		int tmp2 = 0;
+		GetAcceptExSockaddrs(_recvBuf, _recvLen, sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, &paddr1, &tmp1, &paddr2, &tmp2);
+		_client->attachSocket(_socket, inet_ntoa(((sockaddr_in*)paddr2)->sin_addr), ntohs(((sockaddr_in*)paddr2)->sin_port));
+		onAccept(EC_SUCCESS, _client);
+	}
+	else
+	{
+		LCW("Accept Fail,  retry doAccept ... ip=" << _ip << ", port=" << _port << ", lastError=" << GetLastError());
+		onAccept(EC_ERROR, _client);
+	}*/
+	return true;
+}
 Acceptor::~Acceptor()
 {
 

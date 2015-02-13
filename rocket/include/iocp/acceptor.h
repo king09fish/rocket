@@ -10,7 +10,7 @@ namespace rocket
 		class Acceptor:public std::enable_shared_from_this<Acceptor>
 		{
 			public:
-				Acceptor(IO_SERVER *io);
+				Acceptor(Server_Ptr io);
 
 				~Acceptor();
 

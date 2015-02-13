@@ -66,10 +66,13 @@ namespace rocket
 				HANDLE_SENDTO,
 			};
 		};
+#define ConvertOverlaped(ptr)  (*(RequestHandle*)((char*)ptr - (char*)&((RequestHandle*)NULL)->_overlapped))
+
 #endif
 		class Connection;
 		typedef std::function<void(ErrorCode, std::shared_ptr<Connection>)> Accept_Handler;
 		
+
 	}
 }
 

@@ -91,18 +91,24 @@ int main()
 	cout << ptest.use_count() << endl;
 	count(ptest);
 	*/
-	stu *sut = new stu();
+	/*stu *sut = new stu();
 	sut->js = 99;
-	auto sayHello = std::bind(&stu::test, sut/*调用者*/, std::placeholders::_1/*参数1*/);
-	printf("before delete \n");
-	delete sut;
-	printf("end delete \n");
-	auto result = sayHello("Jack");
-	printf("the return value %d", result);
-
+	//auto sayHello = std::bind(&stu::test, sut/*调用者*/ std::placeholders::_1/*参数1*/;
+	//printf("before delete \n");
+	//delete sut;
+	//printf("end delete \n");
+	//auto result = sayHello("Jack");
+	//printf("the return value %d", result);*/
+	int kw = 1;
 	while (true)
 	{
-
+		kw = kw + 1;
+		//printf("kkkkkkk");
+		if (kw >= 4)
+		{
+			continue;
+		}
+		printf("end now");
 	}
 	//shared_ptr<stu> ptest2(new stu());
 	/*
