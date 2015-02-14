@@ -105,8 +105,29 @@ bool Acceptor::Accept(const ConnectioinPtr &con, Accept_Handler&& handler)
 	return true;
 }
 
-bool Acceptor::dd(BOOL bSuccess)
+bool Acceptor::OnMsg()
 {
+	std::shared_ptr<Acceptor> acceptor_ptr = std::move(m_request_handle._tcpAccept);
+	Accept_Handler OnAccept = std::move(m_Accept_Handler);
+	if (setsockopt(m_client_socket, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, (char*)&m_server_socket, sizeof(m_server_socket)) != 0)
+	{
+		//LCW("SO_UPDATE_ACCEPT_CONTEXT fail!  last err=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
+		printf("set socket update accept contest fail ErrorCode %d", WSAGetLastError());
+	}
+	BOOL bTrue = TRUE;
+	if (setsockopt(m_client_socket, IPPROTO_TCP, TCP_NODELAY, (char*)&bTrue, sizeof(bTrue)) != 0)
+	{
+		printf("set socket tcp_nodelay faile ErrorCode %d", WSAGetLastError());
+		//LCW("setsockopt TCP_NODELAY fail!  last err=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
+	}
+
+	sockaddr * paddr_local = NULL;
+	sockaddr * paddr_remote = NULL;
+	int tmp1 = 0;
+	int tmp2 = 0;
+	GetAcceptExSockaddrs(m_recv_Buf, m_recv_Len, sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, &paddr_local, &tmp1, &paddr_remote, &tmp2);
+	m_connection->SetSocketInfo(m_client_socket, inet_ntoa(((sockaddr_in*)paddr_remote)->sin_addr), ntohs(((sockaddr_in*)paddr_remote)->sin_port));
+	//onAccept(EC_SUCCESS, _client);
 	/*
 	std::shared_ptr<TcpAccept> guad(std::move(_handle._tcpAccept));
 	_OnAcceptHandler onAccept(std::move(m_Accept_Handler));

@@ -36,6 +36,7 @@ namespace rocket
 
 				char m_recv_Buf[200];
 				DWORD m_recv_Len = 0;
+				bool OnMsg();
 
 		};
 

@@ -1,4 +1,6 @@
 #include "iocp/iocp.h"
+#include "iocp/acceptor.h"
+
 using namespace rocket::network;
 
 int IO_SERVER::test()
@@ -49,8 +51,8 @@ void IO_SERVER::ThreaLoop(bool is_immediately)
 		switch (request._type)
 		{
 		case RequestHandle::HANDLE_ACCEPT:
-			//if (request._tcpAccept)
-			//req._tcpAccept->onIOCPMessage(bRet);
+			if (request._tcpAccept)
+				request._tcpAccept->OnMsg();
 			printf("accept ");
 			break;
 		default:

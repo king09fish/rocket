@@ -14,10 +14,13 @@ namespace rocket
 
 			~Connection();
 
+			void SetSocketInfo(SOCKET s, std::string remote_ip, unsigned short remote_port));
 		private:
 
 		};
-
+		SOCKET		m_socket = INVALID_SOCKET;
+		std::string m_remote_ip;
+		unsigned short m_remote_port = 0;
 		typedef std::shared_ptr<Connection> ConnectioinPtr;
 
 	}
