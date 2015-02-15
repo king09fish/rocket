@@ -31,7 +31,7 @@ void IO_SERVER::ThreaLoop(bool is_immediately)
 		 dwTranceCount = 0;
 		 uComKey = NULL;
 		 pOverlapped = NULL;
-		if (!GetQueuedCompletionStatus(m_io, &dwTranceCount, &uComKey, &pOverlapped, is_immediately ? 0 : 0))
+		if (!GetQueuedCompletionStatus(m_io, &dwTranceCount, &uComKey, &pOverlapped, is_immediately ? 0:0))
 		{
 			if (GetLastError() == WAIT_TIMEOUT)
 			{

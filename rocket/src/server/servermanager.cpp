@@ -24,8 +24,10 @@ bool ServerManager::StartAccept()
 	}
 
 	ConnectioinPtr newConnection(new Connection());
-	bool ret = m_acceptor->Accept(newConnection, std::bind(&ServerManager::HandleAccept, this, std::placeholders::_1, std::placeholders::_2, m_acceptor));
-	if (ret)m_status = ServerStatus::Start_Suc;
+	bool ret = m_acceptor->Accept(newConnection, std::bind(&ServerManager::HandleAccept, this, std::placeholders::_1, m_acceptor));
+	if (ret)
+	m_status = ServerStatus::Start_Suc;
+
 	return ret;
 }
 
@@ -36,7 +38,7 @@ void ServerManager::run()
 		server->ThreaLoop(true);
 	}
 }
-void ServerManager::HandleAccept(rocket::network::ErrorCode ec, const ConnectioinPtr& s, const Acceptor_ptr &accepter)
+void ServerManager::HandleAccept(const ConnectioinPtr &con, const Acceptor_ptr &accepter)
 {
 
 }

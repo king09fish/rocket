@@ -49,6 +49,7 @@ namespace rocket
 		};
 
 		class Acceptor;
+	//	class Connection;
 
 #ifdef WIN32
 		struct RequestHandle
@@ -70,7 +71,7 @@ namespace rocket
 
 #endif
 		class Connection;
-		typedef std::function<void(ErrorCode, std::shared_ptr<Connection>)> Accept_Handler;
+		typedef std::function<void(std::shared_ptr<Connection>)> Accept_Handler;
 		
 
 	}

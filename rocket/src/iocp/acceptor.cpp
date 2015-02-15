@@ -108,56 +108,27 @@ bool Acceptor::Accept(const ConnectioinPtr &con, Accept_Handler&& handler)
 bool Acceptor::OnMsg()
 {
 	std::shared_ptr<Acceptor> acceptor_ptr = std::move(m_request_handle._tcpAccept);
-	Accept_Handler OnAccept = std::move(m_Accept_Handler);
+	Accept_Handler AcceptConnection = std::move(m_Accept_Handler);
 	if (setsockopt(m_client_socket, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, (char*)&m_server_socket, sizeof(m_server_socket)) != 0)
 	{
-		//LCW("SO_UPDATE_ACCEPT_CONTEXT fail!  last err=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
 		printf("set socket update accept contest fail ErrorCode %d", WSAGetLastError());
 	}
 	BOOL bTrue = TRUE;
 	if (setsockopt(m_client_socket, IPPROTO_TCP, TCP_NODELAY, (char*)&bTrue, sizeof(bTrue)) != 0)
 	{
 		printf("set socket tcp_nodelay faile ErrorCode %d", WSAGetLastError());
-		//LCW("setsockopt TCP_NODELAY fail!  last err=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
 	}
 
-	sockaddr * paddr_local = NULL;
-	sockaddr * paddr_remote = NULL;
-	int tmp1 = 0;
-	int tmp2 = 0;
-	GetAcceptExSockaddrs(m_recv_Buf, m_recv_Len, sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, &paddr_local, &tmp1, &paddr_remote, &tmp2);
-	m_connection->SetSocketInfo(m_client_socket, inet_ntoa(((sockaddr_in*)paddr_remote)->sin_addr), ntohs(((sockaddr_in*)paddr_remote)->sin_port));
-	//onAccept(EC_SUCCESS, _client);
-	/*
-	std::shared_ptr<TcpAccept> guad(std::move(_handle._tcpAccept));
-	_OnAcceptHandler onAccept(std::move(m_Accept_Handler));
-	if (bSuccess)
-	{
-		{
-			if (setsockopt(_socket, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, (char*)&_server, sizeof(_server)) != 0)
-			{
-				LCW("SO_UPDATE_ACCEPT_CONTEXT fail!  last err=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
-			}
-			BOOL bTrue = TRUE;
-			if (setsockopt(_socket, IPPROTO_TCP, TCP_NODELAY, (char*)&bTrue, sizeof(bTrue)) != 0)
-			{
-				LCW("setsockopt TCP_NODELAY fail!  last err=" << WSAGetLastError() << " ip=" << _ip << ", port=" << _port);
-			}
-		}
-
-		sockaddr * paddr1 = NULL;
-		sockaddr * paddr2 = NULL;
-		int tmp1 = 0;
-		int tmp2 = 0;
-		GetAcceptExSockaddrs(_recvBuf, _recvLen, sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, &paddr1, &tmp1, &paddr2, &tmp2);
-		_client->attachSocket(_socket, inet_ntoa(((sockaddr_in*)paddr2)->sin_addr), ntohs(((sockaddr_in*)paddr2)->sin_port));
-		onAccept(EC_SUCCESS, _client);
-	}
-	else
-	{
-		LCW("Accept Fail,  retry doAccept ... ip=" << _ip << ", port=" << _port << ", lastError=" << GetLastError());
-		onAccept(EC_ERROR, _client);
-	}*/
+	sockaddr *paddr_local = NULL;
+	sockaddr *paddr_remote = NULL;
+	int len1 = 0;
+	int len2 = 0;
+	GetAcceptExSockaddrs(m_recv_Buf, m_recv_Len, sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16, &paddr_local, &len1, &paddr_remote, &len2);
+	printf("the ip is %s \n", inet_ntoa(((sockaddr_in*)paddr_remote)->sin_addr));
+	printf("the port is %u \n", ntohs(((sockaddr_in*)paddr_remote)->sin_port));
+	m_connection->InitConnectSocket(m_client_socket, inet_ntoa(((sockaddr_in*)paddr_remote)->sin_addr), ntohs(((sockaddr_in*)paddr_remote)->sin_port));
+	AcceptConnection(m_connection);
+	
 	return true;
 }
 Acceptor::~Acceptor()

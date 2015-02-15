@@ -12,9 +12,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rocketEngine", "rocketEngin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{D1B002CB-FFB7-4C4B-AA10-A3E831DD6BB3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zsummerX", "..\..\..\rocket\zsummerX-master\zsummerX-master\vc2013\zsummerX.vcxproj", "{06D64BC9-7AD1-40A1-835A-54BCC3ABFE39}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zsummerX", "..\..\..\zsummerX-master\vc2013\zsummerX.vcxproj", "{06D64BC9-7AD1-40A1-835A-54BCC3ABFE39}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "frameTest", "..\..\..\rocket\zsummerX-master\zsummerX-master\example\frameTest\frameTest.vcxproj", "{4359E83A-9761-4DA9-8B82-B832E0767E18}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "frameTest", "..\..\..\zsummerX-master\example\frameTest\frameTest.vcxproj", "{4359E83A-9761-4DA9-8B82-B832E0767E18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,7 +18,7 @@ public:
 
 	Server_Ptr server = nullptr;
 
-	void HandleAccept(rocket::network::ErrorCode ec, const ConnectioinPtr& s, const Acceptor_ptr &accepter);
+	void HandleAccept(const ConnectioinPtr& s, const Acceptor_ptr &accepter);
 
 	void run();
 

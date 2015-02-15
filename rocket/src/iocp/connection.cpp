@@ -5,7 +5,7 @@ Connection::Connection()
 {
 
 }
-void Connection::SetSocketInfo(SOCKET s, std::string remote_ip, unsigned short remote_port)
+void Connection::InitConnectSocket(SOCKET s, std::string remote_ip, unsigned short remote_port)
 {
 
 	m_socket = s;
