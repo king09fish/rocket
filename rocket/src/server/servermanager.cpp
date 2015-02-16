@@ -24,7 +24,7 @@ bool ServerManager::StartAccept()
 	}
 
 	ConnectioinPtr newConnection(new Connection());
-	bool ret = m_acceptor->Accept(newConnection, std::bind(&ServerManager::HandleAccept, this, std::placeholders::_1, m_acceptor));
+	bool ret = m_acceptor->Accept(newConnection, std::bind(&ServerManager::HandleAccept, this, std::placeholders::_1, std::placeholders::_2, m_acceptor));
 	if (ret)
 	m_status = ServerStatus::Start_Suc;
 
@@ -38,9 +38,22 @@ void ServerManager::run()
 		server->ThreaLoop(true);
 	}
 }
-void ServerManager::HandleAccept(const ConnectioinPtr &con, const Acceptor_ptr &accepter)
+void ServerManager::HandleAccept(ErrorCode ec, const ConnectioinPtr &con, const Acceptor_ptr &accepter)
 {
+	if (ec)
+	{
+		//accept fail
+		ConnectioinPtr newConnection(new Connection());
+		bool ret = m_acceptor->Accept(newConnection, std::bind(&ServerManager::HandleAccept, this, std::placeholders::_1, std::placeholders::_2, accepter));
+		if (!ret)
+		{
+			printf("error accept in handleAccept");
+		}
+		return;
+	}
 
+	//accept true
+	
 }
 
 ServerManager::~ServerManager()

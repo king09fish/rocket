@@ -99,6 +99,20 @@ int main()
 	//printf("end delete \n");
 	//auto result = sayHello("Jack");
 	//printf("the return value %d", result);*/
+	
+
+	int n = 8;
+	if (n == 8)
+	{
+		n = n + 2;
+		goto number8;
+	}
+
+number7:
+	printf("number u");
+
+number8:
+	printf("the n = %d", n);
 	int kw = 1;
 	while (true)
 	{
@@ -108,7 +122,7 @@ int main()
 		{
 			continue;
 		}
-		printf("end now");
+		//printf("end now");
 	}
 	//shared_ptr<stu> ptest2(new stu());
 	/*
