@@ -112,7 +112,7 @@ bool Acceptor::AcceptClient(bool is_suc)
 	Accept_Handler OnAccept = std::move(m_Accept_Handler);
 	if (!is_suc)
 	{
-		OnAccept(EC_SUCCESS, m_connection);
+		OnAccept(EC_ERROR, m_connection);
 		return;
 	}
 
@@ -134,7 +134,7 @@ bool Acceptor::AcceptClient(bool is_suc)
 	printf("the ip is %s \n", inet_ntoa(((sockaddr_in*)paddr_remote)->sin_addr));
 	printf("the port is %u \n", ntohs(((sockaddr_in*)paddr_remote)->sin_port));
 	m_connection->InitConnectSocket(m_client_socket, inet_ntoa(((sockaddr_in*)paddr_remote)->sin_addr), ntohs(((sockaddr_in*)paddr_remote)->sin_port));
-	OnAccept(EC_ERROR, m_connection);
+	OnAccept(EC_SUCCESS, m_connection);
 	return true;
 }
 Acceptor::~Acceptor()

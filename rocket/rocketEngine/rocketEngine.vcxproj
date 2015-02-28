@@ -17,6 +17,7 @@
     <ClInclude Include="..\include\iocp\connection.h" />
     <ClInclude Include="..\include\iocp\iocp.h" />
     <ClInclude Include="..\include\server\servermanager.h" />
+    <ClInclude Include="..\include\server\session.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\common\common.cpp" />
@@ -24,6 +25,7 @@
     <ClCompile Include="..\src\iocp\connection.cpp" />
     <ClCompile Include="..\src\iocp\iocp.cpp" />
     <ClCompile Include="..\src\server\servermanager.cpp" />
+    <ClCompile Include="..\src\server\session.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source.def" />

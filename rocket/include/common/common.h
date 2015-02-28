@@ -31,6 +31,9 @@ namespace rocket
 			void InitEnv();
 
 		};
+		static unsigned int max_sessions_round = 300000000;
+		inline unsigned int nextSessionId(unsigned int cur_session_id){ return (cur_session_id + 1) % max_sessions_round; }
+
 		extern Env env;
 
 		enum ErrorCode

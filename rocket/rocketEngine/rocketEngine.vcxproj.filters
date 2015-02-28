@@ -51,6 +51,9 @@
     <ClInclude Include="..\include\server\servermanager.h">
       <Filter>头文件\server</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\server\session.h">
+      <Filter>头文件\server</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\iocp\acceptor.cpp">
@@ -66,6 +69,9 @@
       <Filter>源文件\src</Filter>
     </ClCompile>
     <ClCompile Include="..\src\server\servermanager.cpp">
+      <Filter>源文件\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\session.cpp">
       <Filter>源文件\server</Filter>
     </ClCompile>
   </ItemGroup>

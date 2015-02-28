@@ -1,4 +1,5 @@
 #include "common/paltform.h"
+#include "session.h"
 using namespace rocket::network;
 class ServerManager
 {
@@ -23,5 +24,12 @@ public:
 	void run();
 
 	int m_status;
+
+	unsigned int m_cur_session_count;
+
+	static unsigned int m_max_session_count;
+
+	unsigned int m_last_session_id = 0;
 };
 
+unsigned int ServerManager::m_max_session_count = 100;
