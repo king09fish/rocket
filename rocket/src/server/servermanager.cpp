@@ -64,14 +64,14 @@ void ServerManager::HandleAccept(ErrorCode ec, const ConnectioinPtr &con, const 
 		m_cur_session_count++;
 
 		m_last_session_id = nextSessionId(m_last_session_id);
-		/*
-		CTcpSessionPtr session(new TcpSession());
+		
+		Session_Ptr session(new session());
 		s->initialize(_summer);
-		if (session->bindTcpSocketPrt(s, aID, _lastSessionID, iter->second.first))
+		if (session->bindSocketPrt(s, m_last_session_id))
 		{
-			_mapTcpSessionPtr[_lastSessionID] = session;
-			post(std::bind(&MessageDispatcher::dispatchOnSessionEstablished, &MessageDispatcher::getRef(), _lastSessionID));
-		}*/
+			//_mapTcpSessionPtr[_lastSessionID] = session;
+			//post(std::bind(&MessageDispatcher::dispatchOnSessionEstablished, &MessageDispatcher::getRef(), _lastSessionID));
+		}
 	}
 
 }

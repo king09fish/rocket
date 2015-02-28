@@ -11,6 +11,8 @@ public:
 	ConnectioinPtr connection_ptr;
 
 	unsigned int m_session_id = 0;
+
+	bool bindSocketPrt(const ConnectioinPtr &sockptr, unsigned int session_id);
 private:
 
 };
