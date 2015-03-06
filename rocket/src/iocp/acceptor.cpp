@@ -6,7 +6,7 @@ Acceptor::Acceptor(Server_Ptr io) :server(io)
 {
 	memset(&m_request_handle._overlapped, 0, sizeof(m_request_handle._overlapped));
 	memset(&socket_addr, 0, sizeof(socket_addr));
-	m_request_handle._type = RequestHandle::HANDLE_ACCEPT;
+	m_request_handle._type = RequestHandleTag::HANDLE_ACCEPT;
 	m_server_socket = INVALID_SOCKET;
 	m_client_socket = INVALID_SOCKET;
 }

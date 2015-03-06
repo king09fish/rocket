@@ -9,6 +9,14 @@ session::~session()
 
 }
 
+void session::clear()
+{
+
+	m_session_id = 0;
+	connection_ptr.reset();
+	m_reve_buff.buff_len = 0;
+}
+
 bool session::bindSocketPrt(const ConnectioinPtr &sockptr, unsigned int session_id)
 {
 
@@ -33,3 +41,15 @@ bool session::bindSocketPrt(const ConnectioinPtr &sockptr, unsigned int session_
 	}*/
 	return true;
 }
+
+bool session::doRecv()
+{
+	return connection_ptr->doRecv(m_reve_buff.buff + m_reve_buff.buff_len, MSG_BUFF_SIZE - m_reve_buff.buff_len, std::bind(&session::onRecv, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
+}
+
+void session::onRecv(rocket::network::ErrorCode ec, int nRecvedLen)
+{
+
+
+}
+

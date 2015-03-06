@@ -31,6 +31,10 @@ namespace rocket
 			void InitEnv();
 
 		};
+
+		//receive buffer length  and send buffer length 
+		const unsigned int MSG_BUFF_SIZE = 64 * 1024 - 1;
+
 		static unsigned int max_sessions_round = 300000000;
 		inline unsigned int nextSessionId(unsigned int cur_session_id){ return (cur_session_id + 1) % max_sessions_round; }
 
@@ -44,6 +48,14 @@ namespace rocket
 			EC_REMOTE_HANGUP,
 		};
 
+		enum SOCKET_STATUS
+		{
+			LS_UNINITIALIZE, //socket default status
+			LS_WAITLINK, // socket status after init and will to connect.
+			LS_ESTABLISHED, //socket status is established
+			LS_CLOSED, // socket is closed. don't use it again.
+		};
+
 		enum ServerStatus
 		{
 			Init_Suc = 0,
@@ -52,14 +64,15 @@ namespace rocket
 		};
 
 		class Acceptor;
-	//	class Connection;
+		class Connection;
 
 #ifdef WIN32
-		struct RequestHandle
+		struct RequestHandleTag
 		{
 			OVERLAPPED	 _overlapped;
 			unsigned char _type;
 			std::shared_ptr<Acceptor> _tcpAccept;
+			std::shared_ptr<Connection> _connection;
 			enum HANDLE_TYPE
 			{
 				HANDLE_ACCEPT,
@@ -70,12 +83,13 @@ namespace rocket
 				HANDLE_SENDTO,
 			};
 		};
-#define ConvertOverlaped(ptr)  (*(RequestHandle*)((char*)ptr - (char*)&((RequestHandle*)NULL)->_overlapped))
+#define ConvertOverlaped(ptr)  (*(RequestHandleTag*)((char*)ptr - (char*)&((RequestHandleTag*)NULL)->_overlapped))
 
 #endif
 		class Connection;
 		typedef std::function<void(ErrorCode, std::shared_ptr<Connection>)> Accept_Handler;
 		
+		typedef std::function<void(ErrorCode, int)> Recv_Handler;
 
 	}
 }

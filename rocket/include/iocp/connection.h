@@ -22,6 +22,19 @@ namespace rocket
 
 			unsigned short m_remote_port;
 
+			int m_status;
+
+			Server_Ptr m_server_ptr;
+
+			Recv_Handler m_recv_handle;
+			RequestHandleTag m_recv_handle_tag;
+			WSABUF	m_recv_WSABuf;
+
+			bool InitServer(const Server_Ptr &server);
+
+			bool doRecv(char *buf, unsigned int len, Recv_Handler &&handler);
+
+			bool doClose();
 		private:
 
 		};

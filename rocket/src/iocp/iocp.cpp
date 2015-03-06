@@ -39,10 +39,10 @@ void IO_SERVER::ThreaLoop(bool is_immediately)
 			continue; //time out
 		 }
 		
-		RequestHandle &request = (ConvertOverlaped(pOverlapped));
+		 RequestHandleTag &request = (ConvertOverlaped(pOverlapped));
 		switch (request._type)
 		{
-		case RequestHandle::HANDLE_ACCEPT:
+		case RequestHandleTag::HANDLE_ACCEPT:
 			if (request._tcpAccept)
 				request._tcpAccept->AcceptClient(ret);
 			break;

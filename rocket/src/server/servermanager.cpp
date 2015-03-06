@@ -66,8 +66,8 @@ void ServerManager::HandleAccept(ErrorCode ec, const ConnectioinPtr &con, const 
 		m_last_session_id = nextSessionId(m_last_session_id);
 		
 		Session_Ptr session(new session());
-		s->initialize(_summer);
-		if (session->bindSocketPrt(s, m_last_session_id))
+		con->InitServer(server);
+		if (session->bindSocketPrt(con, m_last_session_id))
 		{
 			//_mapTcpSessionPtr[_lastSessionID] = session;
 			//post(std::bind(&MessageDispatcher::dispatchOnSessionEstablished, &MessageDispatcher::getRef(), _lastSessionID));

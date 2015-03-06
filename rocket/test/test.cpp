@@ -101,29 +101,14 @@ int main()
 	//printf("the return value %d", result);*/
 	
 
-	int n = 8;
-	if (n == 8)
+	
+int kw = 1;
+{
+	do
 	{
-		n = n + 2;
-		goto number8;
-	}
-
-number7:
-	printf("number u");
-
-number8:
-	printf("the n = %d", n);
-	int kw = 1;
-	while (true)
-	{
-		kw = kw + 1;
-		//printf("kkkkkkk");
-		if (kw >= 4)
-		{
-			continue;
-		}
-		//printf("end now");
-	}
+		printf("the jjjj");
+	} while (0);
+}
 	//shared_ptr<stu> ptest2(new stu());
 	/*
 	cout << ptest2->getStr() << endl;

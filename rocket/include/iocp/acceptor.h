@@ -31,7 +31,7 @@ namespace rocket
 
 				ConnectioinPtr m_connection;
 
-				RequestHandle m_request_handle;
+				RequestHandleTag m_request_handle;
 
 
 				char m_recv_Buf[200];
